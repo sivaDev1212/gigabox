@@ -99,6 +99,7 @@ function shortId(id: string) {
             <th>Order</th>
             <th>Store</th>
             <th>Created</th>
+            <th>Items Count</th>
             <th>Items</th>
             <th>Total</th>
             <th>Status</th>
@@ -114,6 +115,11 @@ function shortId(id: string) {
             <td>{{ order.store.name }}</td>
             <td>{{ formatWhen(order.createdAt) }}</td>
             <td>{{ order.itemCount }}</td>
+            <td>
+              <div v-for="value in order?.items" :key="value.id">
+                {{ value.product.name }} × {{ value.quantity }}
+              </div>
+            </td>
             <td>{{ order.totalAmount }}</td>
             <td><span class="badge" :class="order.status">{{ statusLabel[order.status] }}</span></td>
             <td>
